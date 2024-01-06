@@ -8,7 +8,6 @@ module Estate
     Estate::ActiveRecord.setup_callbacks(base)
     Estate::StateMachine.create_store
 
-    # TODO: inheritance
     super
   end
 

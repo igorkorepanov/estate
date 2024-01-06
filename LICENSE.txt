@@ -1,4 +1,4 @@
-Copyright (c) 2023 Igor Korepanov
+Copyright (c) 2023-2024 Igor Korepanov
 
 MIT License
 
