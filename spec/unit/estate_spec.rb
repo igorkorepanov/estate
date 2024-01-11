@@ -2,14 +2,9 @@
 
 RSpec.describe Estate do
   let(:class_with_estate) do
-    class ApplicationRecord
-    end
-
-    class MyClass < ApplicationRecord
+    Class.new do
       include Estate
     end
-
-    MyClass
   end
 
   before do
@@ -87,8 +82,8 @@ RSpec.describe Estate do
     end
 
     describe '.transition' do
-      let(:from_state) { :state_1 }
-      let(:to_state) { :state_2 }
+      let(:from_state) { :start }
+      let(:to_state) { :end }
 
       before do
         allow(Estate::StateMachine).to receive(:state_exists?).with(from_state).and_return(from_state_exists_condition)

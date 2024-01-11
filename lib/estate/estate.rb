@@ -28,12 +28,10 @@ module Estate
     end
 
     def transition(from:, to:)
-      unless Estate::StateMachine.state_exists?(from)
-        raise(StandardError, "state `#{from}` is not defined")
-      end
-      unless Estate::StateMachine.state_exists?(to)
-        raise(StandardError, "state `#{to}` is not defined")
-      end
+      raise(StandardError, "state `#{from}` is not defined") unless Estate::StateMachine.state_exists?(from)
+
+      raise(StandardError, "state `#{to}` is not defined") unless Estate::StateMachine.state_exists?(to)
+
       if Estate::StateMachine.transition_exists?(from: from, to: to)
         raise(StandardError, "`transition from: :#{from}, to: :#{to}` already defined")
       end

@@ -3,11 +3,9 @@
 module Estate
   module Requirements
     def check_requirements(base)
-      ancestors = base.ancestors.map {|klass| klass.to_s}
+      ancestors = base.ancestors.map(&:to_s)
 
-      unless ancestors.include?("ActiveRecord::Base")
-        raise(StandardError, "Estate requires ActiveRecord")
-      end
+      raise(StandardError, 'Estate requires ActiveRecord') unless ancestors.include?('ActiveRecord::Base')
     end
 
     module_function :check_requirements
