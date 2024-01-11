@@ -28,5 +28,7 @@ jobs:
         run: |
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
+      - name: Linters
+        run: bundle exec rubocop --parallel
       - name: RSpec
         run: COVERAGE=true bundle exec rspec

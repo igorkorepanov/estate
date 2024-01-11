@@ -13,7 +13,6 @@ RSpec.describe Estate::StateMachine do
 
   describe '.state_exists?' do
     # TODO: this does not need to be done if the tests are run sequentially
-    # TODO: fix
     before { described_class.create_store }
 
     it { expect(described_class.state_exists?(nil)).to eq false }

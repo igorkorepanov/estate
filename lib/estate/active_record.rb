@@ -2,7 +2,7 @@
 
 module Estate
   module ActiveRecord
-    CALLBACK_NAMES = [:before_validation]
+    CALLBACK_NAMES = [:before_validation].freeze
 
     def setup_callbacks(base)
       base.class_eval do
@@ -17,24 +17,16 @@ module Estate
       to_state = instance.public_send(Estate::Configuration.column_name)
 
       if from_state == to_state
-        if to_state.nil?
-          if Estate::Configuration.allow_empty_initial_state
-            # OK
-          else
-            raise(StandardError, "empty `#{Estate::Configuration.column_name}` is not allowed")
-          end
+        if to_state.nil? && !Estate::Configuration.allow_empty_initial_state
+          raise(StandardError, "empty `#{Estate::Configuration.column_name}` is not allowed")
+        end
+      elsif Estate::StateMachine.state_exists?(to_state) # TODO: check to_state.nil?
+        unless Estate::StateMachine.transition_exists?(from: from_state, to: to_state)
+          instance.errors.add(Estate::Configuration.column_name,
+                              message: "transition from `#{from_state}` to `#{to_state}` is not allowed")
         end
       else
-        # TODO: check to_state.nil?
-        if Estate::StateMachine.state_exists?(to_state)
-          if Estate::StateMachine.transition_exists?(from: from_state, to: to_state)
-          else
-            instance.errors.add(Estate::Configuration.column_name, message: "transition from `#{from_state}` to `#{to_state}` is not allowed")
-          end
-        else
-          instance.errors.add(:base, "state `#{to_state}` is not defined")
-          # raise(StandardError, "state `#{to_state}` is not defined")
-        end
+        instance.errors.add(:base, "state `#{to_state}` is not defined")
       end
     end
 
