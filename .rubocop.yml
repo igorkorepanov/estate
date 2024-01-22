@@ -1,3 +1,7 @@
+require:
+  - rubocop-performance
+  - rubocop-rspec
+
 Layout/LineLength:
   Exclude:
     - 'spec/**/*'
@@ -16,6 +20,15 @@ Metrics/BlockLength:
 
 Metrics/MethodLength:
   Max: 20
+
+RSpec/MultipleExpectations:
+  Max: 10
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
 
 Style/Documentation:
   Enabled: false
