@@ -2,6 +2,6 @@
 
 RSpec.describe Estate do
   it 'has a version number' do
-    expect(subject::VERSION).to eq '0.0.1'
+    expect(described_class::VERSION).to eq '0.0.2'
   end
 end

@@ -15,14 +15,14 @@ RSpec.describe Estate::Configuration do
     let(:column_name) { :custom_name }
     let(:allow_empty_initial_state) { true }
 
-    before { subject.init_config(column_name: column_name, allow_empty_initial_state: allow_empty_initial_state) }
+    before { described_class.init_config(column_name: column_name, allow_empty_initial_state: allow_empty_initial_state) }
 
     it 'can set and retrieve the custom COLUMN_NAME' do
-      expect(subject.column_name).to eq column_name
+      expect(described_class.column_name).to eq column_name
     end
 
     it 'can set and retrieve the custom ALLOW_EMPTY_INITIAL_STATE' do
-      expect(subject.allow_empty_initial_state).to eq allow_empty_initial_state
+      expect(described_class.allow_empty_initial_state).to eq allow_empty_initial_state
     end
   end
 end

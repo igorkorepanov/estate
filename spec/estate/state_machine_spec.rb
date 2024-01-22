@@ -6,8 +6,8 @@ RSpec.describe Estate::StateMachine do
 
   describe '.create_store' do
     it 'creates store' do
-      expect { described_class.create_store }.to change { described_class.states }.from(nil).to({})
-                                            .and change { described_class.transitions }.from(nil).to({})
+      expect { described_class.create_store }.to change(described_class, :states).from(nil).to({})
+                                            .and change(described_class, :transitions).from(nil).to({})
     end
   end
 
