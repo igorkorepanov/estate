@@ -24,7 +24,6 @@ module Estate
       end
 
       def transition_exists?(from:, to:)
-        # TODO: validate from and to
         transition_key = { from: from.to_sym, to: to.to_sym }
         transitions.key?(transition_key)
       end
