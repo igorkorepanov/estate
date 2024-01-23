@@ -17,9 +17,6 @@ Lint/ConstantDefinitionInBlock:
   Exclude:
     - 'spec/**/*'
 
-Metrics/AbcSize:
-  Max: 20
-
 Metrics/BlockLength:
   Max: 20
   ExcludedMethods: [describe, context]
