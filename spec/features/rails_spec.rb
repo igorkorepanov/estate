@@ -67,5 +67,12 @@ RSpec.describe 'Estate works with Rails' do
       expect(model).not_to be_valid
       expect(model.errors.messages[:base]).to eq ['state `non_existent_state` is not defined']
     end
+
+    it 'does not allow a transition to a state that cannot be transitioned to' do
+      model = DummyModel.create(state: :state1)
+      model.update(state: :state3)
+      expect(model).not_to be_valid
+      expect(model.errors.messages[:state]).to eq [{ message: 'transition from `state1` to `state3` is not allowed' }]
+    end
   end
 end
