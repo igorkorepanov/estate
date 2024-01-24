@@ -36,20 +36,33 @@ class MyModel < ApplicationRecord
 end
 ```
 
-The default field for storing the state is named state. You can customize this field by providing options to the estate method:
+And then
+
+```ruby
+model = MyModel.create(state: :state_1)
+model.update(state: :state_2) # you don't need to call any extra code to change the state, treat it like a normal field   
+```
+
+The default field for storing the state is named "state". You can customize this name by providing options to the estate method:
 
 ```ruby
 class MyModel < ApplicationRecord
   include Estate
 
-  estate(column: :custom_state_field, empty_initial_state: true) do
-    state :state_1
-    state :state_2
-    state :state_3
+  estate column: :custom_state_field do
+    # ...
+  end
+end
+```
 
-    transition from: :state_1, to: :state_2
-    transition from: :state_2, to: :state_3
-    transition from: :state_3, to: :state_1
+You can also use the empty_initial_state: true option to enable the creation of a model with a nil initial state.
+
+```ruby
+class MyModel < ApplicationRecord
+  include Estate
+
+  estate empty_initial_state: true do
+    # ...
   end
 end
 ```
