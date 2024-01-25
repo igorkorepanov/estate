@@ -1,0 +1,6 @@
+# TypeProf 0.21.9
+
+# Classes
+module Estate
+  VERSION: String
+end

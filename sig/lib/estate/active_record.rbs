@@ -1,0 +1,15 @@
+# TypeProf 0.21.9
+
+# Classes
+module Estate
+  module ActiveRecord
+    CALLBACK_NAMES: [:before_validation]
+
+    def setup_callbacks: (untyped base) -> void
+    def validate_state_changes: (::ActiveRecord::Base) -> void
+    def add_error: (::ActiveRecord::Base `instance`, String | Symbol attribute, String message) -> void
+    def transition_allowed?: (from_state: untyped, to_state: untyped) -> bool
+    def self.setup_callbacks: (untyped base) -> void
+    def self.validate_state_changes: (untyped `instance`) -> void
+  end
+end

@@ -1,0 +1,76 @@
+---
+path: ".gem_rbs_collection"
+gems:
+- name: actioncable
+  version: '7.1'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: e8eb9edab401923edcd5ca292079bddd3d7c7a71
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
+- name: activemodel
+  version: '7.0'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: eefb6d3199d3e2a2ffb4e32cdd009f3ecc84a8d8
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
+- name: activerecord
+  version: '7.0'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: eefb6d3199d3e2a2ffb4e32cdd009f3ecc84a8d8
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
+- name: activesupport
+  version: '7.0'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: e8eb9edab401923edcd5ca292079bddd3d7c7a71
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
+- name: concurrent-ruby
+  version: '1.1'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: e8eb9edab401923edcd5ca292079bddd3d7c7a71
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
+- name: date
+  version: '0'
+  source:
+    type: stdlib
+- name: erb
+  version: '0'
+  source:
+    type: stdlib
+- name: logger
+  version: '0'
+  source:
+    type: stdlib
+- name: monitor
+  version: '0'
+  source:
+    type: stdlib
+- name: mutex_m
+  version: '0'
+  source:
+    type: stdlib
+- name: securerandom
+  version: '0'
+  source:
+    type: stdlib
+- name: singleton
+  version: '0'
+  source:
+    type: stdlib
+- name: time
+  version: '0'
+  source:
+    type: stdlib
+gemfile_lock_path: Gemfile.lock

@@ -1,0 +1,12 @@
+# TypeProf 0.21.9
+
+# Classes
+module Estate
+  def self.included: (untyped base) -> void
+
+  module ClassMethods
+    def estate: (?column: String | Symbol, ?empty_initial_state: bool) -> void
+    def state: (String | Symbol name) -> void
+    def transition: (from: String | Symbol, to: String | Symbol) -> void
+  end
+end

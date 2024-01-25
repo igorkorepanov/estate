@@ -6,3 +6,5 @@ coverage/*
 *.gem
 
 spec/*.sqlite3.*
+
+/.gem_rbs_collection/

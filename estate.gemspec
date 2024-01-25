@@ -22,4 +22,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec', '3.12.0'
 
   s.add_development_dependency 'simplecov', '0.22.0'
+
+  s.add_development_dependency 'steep', '1.6.0'
 end

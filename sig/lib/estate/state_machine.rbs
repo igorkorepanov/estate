@@ -1,0 +1,15 @@
+# TypeProf 0.21.9
+
+# Classes
+module Estate
+  class StateMachine
+    def self.states: -> Hash[Symbol, nil]
+    def self.transitions: -> Hash[untyped, nil]
+
+    def self.create_store: -> void
+    def self.state_exists?: (String | Symbol state) -> bool
+    def self.register_state: (String | Symbol state) -> void
+    def self.transition_exists?: (from: String | Symbol, to: String | Symbol) -> bool
+    def self.register_transition: (from: String | Symbol, to: String | Symbol) -> void
+  end
+end

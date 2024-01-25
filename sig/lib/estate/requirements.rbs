@@ -1,0 +1,9 @@
+# TypeProf 0.21.9
+
+# Classes
+module Estate
+  module Requirements
+    def check_requirements: (untyped base) -> nil
+    def self.check_requirements: (untyped base) -> nil
+  end
+end
