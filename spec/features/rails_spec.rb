@@ -50,7 +50,7 @@ RSpec.describe 'Estate works with Rails' do
     model = model_class.create(state: :state1)
     model.update(state: :state3)
     expect(model).not_to be_valid
-    expect(model.errors.messages[:state]).to eq [{ message: 'transition from `state1` to `state3` is not allowed' }]
+    expect(model.errors.messages[:state]).to eq ['transition from `state1` to `state3` is not allowed']
   end
 
   context 'with allowed empty initial state' do
@@ -98,28 +98,28 @@ RSpec.describe 'Estate works with Rails' do
     end
   end
 
-  # context 'with inherited model' do
-  #   let(:model_class) do
-  #     class DummyModel < ActiveRecord::Base
-  #       include Estate
-  #
-  #       estate do
-  #         state :state1
-  #         state :state3
-  #       end
-  #     end
-  #
-  #     class InheritedModel < DummyModel
-  #     end
-  #
-  #     InheritedModel
-  #   end
-  #
-  #   it 'does not allow a transition to a state that cannot be transitioned to' do
-  #     model = model_class.create(state: :state1)
-  #     model.update(state: :state3)
-  #     expect(model).not_to be_valid
-  #     expect(model.errors.messages[:state]).to eq [{ message: 'transition from `state1` to `state3` is not allowed' }]
-  #   end
-  # end
+  context 'with inherited model' do
+    let(:model_class) do
+      class DummyModel < ActiveRecord::Base
+        include Estate
+
+        estate do
+          state :state1
+          state :state3
+        end
+      end
+
+      class InheritedModel < DummyModel
+      end
+
+      InheritedModel
+    end
+
+    it 'does not allow a transition to a state that cannot be transitioned to' do
+      model = model_class.create(state: :state1)
+      model.update(state: :state3)
+      expect(model).not_to be_valid
+      expect(model.errors.messages[:state]).to eq ['transition from `state1` to `state3` is not allowed']
+    end
+  end
 end
