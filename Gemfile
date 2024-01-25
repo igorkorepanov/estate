@@ -8,3 +8,4 @@ gem 'rails'
 gem 'sqlite3'
 
 gem 'rake', '13.1.0'
+gem 'rbs', '3.4.3', require: false
