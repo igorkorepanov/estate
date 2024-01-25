@@ -28,7 +28,7 @@ module Estate
         add_error(instance, :base, "state `#{to_state}` is not defined")
       elsif !transition_allowed?(from_state: from_state, to_state: to_state)
         add_error(instance, Estate::Configuration.column_name,
-                  message: "transition from `#{from_state}` to `#{to_state}` is not allowed")
+                  "transition from `#{from_state}` to `#{to_state}` is not allowed")
       end
     end
 
