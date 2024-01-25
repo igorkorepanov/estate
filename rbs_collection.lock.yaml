@@ -9,6 +9,38 @@ gems:
     revision: e8eb9edab401923edcd5ca292079bddd3d7c7a71
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
+- name: actionmailer
+  version: '7.0'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: e8eb9edab401923edcd5ca292079bddd3d7c7a71
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
+- name: actionpack
+  version: '6.0'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: e8eb9edab401923edcd5ca292079bddd3d7c7a71
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
+- name: actionview
+  version: '6.0'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: e8eb9edab401923edcd5ca292079bddd3d7c7a71
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
+- name: activejob
+  version: '6.0'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: e8eb9edab401923edcd5ca292079bddd3d7c7a71
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
 - name: activemodel
   version: '7.0'
   source:
@@ -25,6 +57,14 @@ gems:
     revision: eefb6d3199d3e2a2ffb4e32cdd009f3ecc84a8d8
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
+- name: activestorage
+  version: '6.1'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: e8eb9edab401923edcd5ca292079bddd3d7c7a71
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
 - name: activesupport
   version: '7.0'
   source:
@@ -33,8 +73,28 @@ gems:
     revision: e8eb9edab401923edcd5ca292079bddd3d7c7a71
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
+- name: base64
+  version: '0'
+  source:
+    type: stdlib
+- name: bigdecimal
+  version: '0'
+  source:
+    type: stdlib
+- name: cgi
+  version: '0'
+  source:
+    type: stdlib
 - name: concurrent-ruby
   version: '1.1'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: e8eb9edab401923edcd5ca292079bddd3d7c7a71
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
+- name: connection_pool
+  version: '2.4'
   source:
     type: git
     name: ruby/gem_rbs_collection
@@ -45,11 +105,51 @@ gems:
   version: '0'
   source:
     type: stdlib
+- name: dbm
+  version: '0'
+  source:
+    type: stdlib
 - name: erb
   version: '0'
   source:
     type: stdlib
+- name: fileutils
+  version: '0'
+  source:
+    type: stdlib
+- name: globalid
+  version: '1.1'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: e8eb9edab401923edcd5ca292079bddd3d7c7a71
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
+- name: i18n
+  version: '1.10'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: e8eb9edab401923edcd5ca292079bddd3d7c7a71
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
+- name: io-console
+  version: '0'
+  source:
+    type: stdlib
 - name: logger
+  version: '0'
+  source:
+    type: stdlib
+- name: mail
+  version: '2.8'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: e8eb9edab401923edcd5ca292079bddd3d7c7a71
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
+- name: minitest
   version: '0'
   source:
     type: stdlib
@@ -61,6 +161,66 @@ gems:
   version: '0'
   source:
     type: stdlib
+- name: net-protocol
+  version: '0'
+  source:
+    type: stdlib
+- name: net-smtp
+  version: '0'
+  source:
+    type: stdlib
+- name: nokogiri
+  version: '1.11'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: e8eb9edab401923edcd5ca292079bddd3d7c7a71
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
+- name: pstore
+  version: '0'
+  source:
+    type: stdlib
+- name: psych
+  version: '0'
+  source:
+    type: stdlib
+- name: rack
+  version: '2.2'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: e8eb9edab401923edcd5ca292079bddd3d7c7a71
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
+- name: rails-dom-testing
+  version: '2.0'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: e8eb9edab401923edcd5ca292079bddd3d7c7a71
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
+- name: railties
+  version: '6.0'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: e8eb9edab401923edcd5ca292079bddd3d7c7a71
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
+- name: rake
+  version: '13.0'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: e8eb9edab401923edcd5ca292079bddd3d7c7a71
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
+- name: rdoc
+  version: '0'
+  source:
+    type: stdlib
 - name: securerandom
   version: '0'
   source:
@@ -69,7 +229,31 @@ gems:
   version: '0'
   source:
     type: stdlib
+- name: tempfile
+  version: '0'
+  source:
+    type: stdlib
+- name: thor
+  version: '1.2'
+  source:
+    type: git
+    name: ruby/gem_rbs_collection
+    revision: e8eb9edab401923edcd5ca292079bddd3d7c7a71
+    remote: https://github.com/ruby/gem_rbs_collection.git
+    repo_dir: gems
 - name: time
+  version: '0'
+  source:
+    type: stdlib
+- name: timeout
+  version: '0'
+  source:
+    type: stdlib
+- name: tsort
+  version: '0'
+  source:
+    type: stdlib
+- name: uri
   version: '0'
   source:
     type: stdlib
