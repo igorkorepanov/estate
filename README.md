@@ -40,7 +40,7 @@ And then
 
 ```ruby
 model = MyModel.create(state: :state_1)
-model.update(state: :state_2) # you don't need to call any extra code to change the state, treat it like a normal field   
+model.update(state: :state_2) # you don't need to call any extra code to change the state; treat it like a normal field
 ```
 
 The default field for storing the state is named "state". You can customize this name by providing options to the estate method:
@@ -55,7 +55,7 @@ class MyModel < ApplicationRecord
 end
 ```
 
-You can also use the empty_initial_state: true option to enable the creation of a model with a nil initial state.
+You can also use the `empty_initial_state: true` option to enable the creation of a model with a `nil` initial state:
 
 ```ruby
 class MyModel < ApplicationRecord
@@ -66,6 +66,17 @@ class MyModel < ApplicationRecord
   end
 end
 ```
+
+The `estate` method now supports a `raise_on_error` option. When set to `true`, the gem will raise a specific exception instead of the standard ActiveRecord validation error upon a validation failure.
+
+```ruby
+class MyModel < ApplicationRecord
+  include Estate
+
+  estate raise_on_error: true do
+    # ...
+  end
+end
 
 ## Migration Example
 
