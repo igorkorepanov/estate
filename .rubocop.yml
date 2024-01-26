@@ -16,7 +16,7 @@ Lint/ConstantDefinitionInBlock:
     - 'spec/**/*'
 
 Metrics/AbcSize:
-  Max: 25
+  Max: 20
 
 Metrics/BlockLength:
   Max: 20

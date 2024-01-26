@@ -6,10 +6,7 @@ module Estate
 
     Estate::Requirements.check_requirements(base)
     Estate::StateMachine.create_store
-    Estate::Core.setup_callbacks(base)
-    # Estate::ActiveRecord.setup_callbacks(base)
-
-    super
+    Estate::Core.setup(base)
   end
 
   module ClassMethods

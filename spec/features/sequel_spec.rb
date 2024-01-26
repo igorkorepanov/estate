@@ -22,7 +22,7 @@ RSpec.describe 'Estate works with Sequel' do
   end
 
   it 'creates a model' do
-    model = model_class.create(state: :state1)
+    model = model_class.new(state: :state1)
     expect(model).to be_valid
     expect(model.state).to eq 'state1'
   end
@@ -37,7 +37,7 @@ RSpec.describe 'Estate works with Sequel' do
   it 'does not create model with empty state' do
     model = model_class.new
     expect(model).not_to be_valid
-    expect(model.errors.messages[:base]).to eq ['empty `state` is not allowed']
+    expect(model.errors[:base]).to eq ['empty `state` is not allowed']
   end
 
   it 'does not allow a transition to empty state' do
