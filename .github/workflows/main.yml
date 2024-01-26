@@ -30,5 +30,9 @@ jobs:
           bundle install --jobs 4 --retry 3
       - name: Linters
         run: bundle exec rubocop --parallel
+      - name: Rbs collections
+        run: rbs collection install
+      - name: Typechecking
+        run: bundle exec steep check
       - name: RSpec
         run: COVERAGE=true bundle exec rspec

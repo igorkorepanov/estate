@@ -1,0 +1,15 @@
+# TypeProf 0.21.9
+
+# Classes
+module Estate
+  module Configuration
+    def self.column_name: -> (String | Symbol)
+    def self.allow_empty_initial_state: -> bool
+    def self.init_config: (column_name: String | Symbol, allow_empty_initial_state: bool) -> void
+
+    module Defaults
+      COLUMN_NAME: :state
+      ALLOW_EMPTY_INITIAL_STATE: false
+    end
+  end
+end
