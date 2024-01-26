@@ -40,15 +40,21 @@ RSpec.describe Estate do
       it 'configures estate with default values' do
         expect { |b| class_with_estate.estate(&b) }.to yield_control
         expect(Estate::Configuration).to have_received(:init_config).with(column_name: Estate::Configuration::Defaults::COLUMN_NAME,
-                                                                          allow_empty_initial_state: Estate::Configuration::Defaults::ALLOW_EMPTY_INITIAL_STATE)
+                                                                          allow_empty_initial_state: Estate::Configuration::Defaults::ALLOW_EMPTY_INITIAL_STATE,
+                                                                          raise_on_error: Estate::Configuration::Defaults::RAISE_ON_ERROR)
       end
 
       it 'configures estate with custom values' do
         custom_column_name = :custom_name
         empty_allow_initial_state = !Estate::Configuration::Defaults::ALLOW_EMPTY_INITIAL_STATE
-        expect { |b| class_with_estate.estate(column: custom_column_name, empty_initial_state: empty_allow_initial_state, &b) }.to yield_control
+        raise_on_error = !Estate::Configuration::Defaults::RAISE_ON_ERROR
+        expect do |b|
+          class_with_estate.estate(column: custom_column_name, empty_initial_state: empty_allow_initial_state,
+                                   raise_on_error: raise_on_error, &b)
+        end.to yield_control
         expect(Estate::Configuration).to have_received(:init_config).with(column_name: custom_column_name,
-                                                                          allow_empty_initial_state: empty_allow_initial_state)
+                                                                          allow_empty_initial_state: empty_allow_initial_state,
+                                                                          raise_on_error: raise_on_error)
       end
 
       it 'does not rise an error without a block' do

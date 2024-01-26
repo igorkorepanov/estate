@@ -13,8 +13,10 @@ module Estate
 
   module ClassMethods
     def estate(column: Estate::Configuration::Defaults::COLUMN_NAME,
-               empty_initial_state: Estate::Configuration::Defaults::ALLOW_EMPTY_INITIAL_STATE)
-      Estate::Configuration.init_config(column_name: column, allow_empty_initial_state: empty_initial_state)
+               empty_initial_state: Estate::Configuration::Defaults::ALLOW_EMPTY_INITIAL_STATE,
+               raise_on_error: Estate::Configuration::Defaults::RAISE_ON_ERROR)
+      Estate::Configuration.init_config(column_name: column, allow_empty_initial_state: empty_initial_state,
+                                        raise_on_error: raise_on_error)
 
       yield if block_given?
     end

@@ -122,4 +122,41 @@ RSpec.describe 'Estate works with Rails' do
       expect(model.errors.messages[:state]).to eq ['transition from `state1` to `state3` is not allowed']
     end
   end
+
+  context 'with enabled exceptions' do
+    let(:model_class) do
+      class DummyModel < ActiveRecord::Base
+        include Estate
+
+        estate raise_on_error: true do
+          state :state1
+          state :state2
+          state :state3
+
+          transition from: :state1, to: :state2
+        end
+      end
+
+      DummyModel
+    end
+
+    it 'does not allow a transition to empty state' do
+      model = model_class.create(state: :state1)
+      expect { model.update(state: nil) }.to raise_error(StandardError, 'transition to empty state is not allowed')
+    end
+
+    it 'does not allow a transition to non-existent state' do
+      model = model_class.create(state: :state1)
+      expect { model.update(state: :non_existent_state) }.to raise_error(StandardError, 'state `non_existent_state` is not defined')
+    end
+
+    it 'does not allow a transition to a state that cannot be transitioned to' do
+      model = model_class.create(state: :state1)
+      expect { model.update(state: :state3) }.to raise_error(StandardError, 'state: transition from `state1` to `state3` is not allowed')
+    end
+
+    it 'does not create model with empty state' do
+      expect { model_class.create }.to raise_error(StandardError, 'empty `state` is not allowed')
+    end
+  end
 end

@@ -9,13 +9,21 @@ RSpec.describe Estate::Configuration do
     it 'has default ALLOW_EMPTY_INITIAL_STATE' do
       expect(described_class::Defaults::ALLOW_EMPTY_INITIAL_STATE).to eq false
     end
+
+    it 'has default RAISE_ON_ERROR' do
+      expect(described_class::Defaults::RAISE_ON_ERROR).to eq false
+    end
   end
 
   describe '.init_config' do
     let(:column_name) { :custom_name }
     let(:allow_empty_initial_state) { true }
+    let(:raise_on_error) { true }
 
-    before { described_class.init_config(column_name: column_name, allow_empty_initial_state: allow_empty_initial_state) }
+    before do
+      described_class.init_config(column_name: column_name, allow_empty_initial_state: allow_empty_initial_state,
+                                  raise_on_error: raise_on_error)
+    end
 
     it 'can set and retrieve the custom COLUMN_NAME' do
       expect(described_class.column_name).to eq column_name
@@ -23,6 +31,10 @@ RSpec.describe Estate::Configuration do
 
     it 'can set and retrieve the custom ALLOW_EMPTY_INITIAL_STATE' do
       expect(described_class.allow_empty_initial_state).to eq allow_empty_initial_state
+    end
+
+    it 'can set and retrieve the custom RAISE_ON_ERROR' do
+      expect(described_class.raise_on_error).to eq raise_on_error
     end
   end
 end
