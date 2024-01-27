@@ -3,11 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe 'Estate works with Sequel' do
-  let(:model_class) do # TODO: safe define class
-    class DModel < Sequel::Model
+  let(:model_class) do
+    stub_const('DModel', Class.new(Sequel::Model) do
       include Estate
 
       plugin :dirty
+      set_dataset(:dummy_models)
 
       estate do
         state :state1
@@ -16,9 +17,7 @@ RSpec.describe 'Estate works with Sequel' do
 
         transition from: :state1, to: :state2
       end
-    end
-
-    DModel
+    end)
   end
 
   it 'creates a model' do
@@ -63,16 +62,15 @@ RSpec.describe 'Estate works with Sequel' do
 
   context 'with allowed empty initial state' do
     let(:model_class) do
-      class DModel < Sequel::Model
+      stub_const('DModel', Class.new(Sequel::Model) do
         include Estate
 
         plugin :dirty
+        set_dataset(:dummy_models)
 
         estate empty_initial_state: true do
         end
-      end
-
-      DModel
+      end)
     end
 
     it 'creates a model' do
@@ -82,26 +80,10 @@ RSpec.describe 'Estate works with Sequel' do
   end
 
   context 'with inherited model' do
-    let(:model_class) do
-      class DModel < Sequel::Model
-        include Estate
-
-        plugin :dirty
-
-        estate do
-          state :state1
-          state :state3
-        end
-      end
-
-      class IModel < DModel
-      end
-
-      IModel
-    end
+    let(:inherited_model_class) { stub_const('InheritedDummyModel', Class.new(model_class)) }
 
     it 'does not allow a transition to a state that cannot be transitioned to' do
-      model = model_class.create(state: :state1)
+      model = inherited_model_class.create(state: :state1)
       model.set(state: :state3)
       expect(model).not_to be_valid
       expect(model.errors[:state]).to eq ['transition from `state1` to `state3` is not allowed']
