@@ -65,10 +65,6 @@ RSpec.describe 'Estate works with ActiveRecords' do
         include Estate
 
         estate empty_initial_state: true do
-          state :state1
-          state :state2
-
-          transition from: :state1, to: :state2
         end
       end
 

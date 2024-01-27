@@ -1,6 +1,6 @@
 # Estate Gem
 
-Estate is a Ruby gem designed to simplify state management in ActiveRecord models. The primary focus of this gem is to provide a straightforward way to define states and transitions using a clean syntax, allowing seamless integration into ActiveRecord models.
+Estate is a Ruby gem designed to simplify state management in both ActiveRecord and Sequel models. The primary focus of this gem is to provide a straightforward way to define states and transitions using a clean syntax.
 
 ## Installation
 
@@ -17,8 +17,8 @@ gem install estate
 ```
 
 ## Usage
-
-To use the Estate gem, include it in your ActiveRecord model and define your states and transitions inside a block using the `estate` method. Here's a simple example:
+### ActiveRecord
+To use the Estate gem with ActiveRecord, include it in your model and define your states and transitions inside a block using the `estate` method. Here's a simple example:
 
 ```ruby
 class MyModel < ApplicationRecord
@@ -77,8 +77,30 @@ class MyModel < ApplicationRecord
     # ...
   end
 end
+```
 
-## Migration Example
+### Sequel
+To use the Estate gem with Sequel, include it in your model, and ensure you have the `plugin: dirty` enabled for validation to work correctly. The `raise_on_error` option is not needed with Sequel, as exceptions are always raised on validation errors.
+
+```ruby
+class MySequelModel < Sequel::Model
+  include Estate
+
+  plugin :dirty # Ensure the dirty plugin is enabled for validation to work
+
+  estate do
+    state :state_1
+    state :state_2
+    state :state_3
+
+    transition from: :state_1, to: :state_2
+    transition from: :state_2, to: :state_3
+    transition from: :state_3, to: :state_1
+  end
+end
+```
+
+## Migration Example for ActiveRecord
 
 ```bash
 bundle exec rails generate migration AddStateToMyModels state:string
