@@ -5,7 +5,9 @@ module Estate
     def check_requirements(base)
       ancestors = base.ancestors.map(&:to_s)
 
-      raise(StandardError, 'Estate requires ActiveRecord') unless ancestors.include?('ActiveRecord::Base')
+      unless 'Sequel::Model'.in?(ancestors) || 'ActiveRecord::Base'.in?(ancestors)
+        raise(StandardError, 'Estate requires ActiveRecord or Sequel')
+      end
     end
 
     module_function :check_requirements
