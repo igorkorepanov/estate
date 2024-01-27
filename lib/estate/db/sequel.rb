@@ -34,12 +34,7 @@ module Estate
 
       # TODO: remove base
       def add_error(instance:, message:, attribute: :base)
-        if Estate::Configuration.raise_on_error
-          exception_message = attribute == :base ? message : "#{attribute}: #{message}"
-          raise(StandardError, exception_message)
-        else
-          instance.errors.add(attribute, message)
-        end
+        instance.errors.add(attribute, message)
       end
 
       def transition_allowed?(from_state:, to_state:)

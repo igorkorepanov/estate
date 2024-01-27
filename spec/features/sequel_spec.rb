@@ -60,4 +60,51 @@ RSpec.describe 'Estate works with Sequel' do
     expect(model).not_to be_valid
     expect(model.errors[:state]).to eq ['transition from `state1` to `state3` is not allowed']
   end
+
+  context 'with allowed empty initial state' do
+    let(:model_class) do
+      class DModel < Sequel::Model
+        include Estate
+
+        plugin :dirty
+
+        estate empty_initial_state: true do
+        end
+      end
+
+      DModel
+    end
+
+    it 'creates a model' do
+      model = model_class.create
+      expect(model.state).to eq nil
+    end
+  end
+
+  context 'with inherited model' do
+    let(:model_class) do
+      class DModel < Sequel::Model
+        include Estate
+
+        plugin :dirty
+
+        estate do
+          state :state1
+          state :state3
+        end
+      end
+
+      class IModel < DModel
+      end
+
+      IModel
+    end
+
+    it 'does not allow a transition to a state that cannot be transitioned to' do
+      model = model_class.create(state: :state1)
+      model.set(state: :state3)
+      expect(model).not_to be_valid
+      expect(model.errors[:state]).to eq ['transition from `state1` to `state3` is not allowed']
+    end
+  end
 end
