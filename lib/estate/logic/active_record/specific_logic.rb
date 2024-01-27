@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require 'estate/logic/base'
+require 'estate/logic/common_logic'
 
 module Estate
   module Logic
     module ActiveRecord
       module SpecificLogic
-        extend Estate::Logic::Base
+        extend Estate::Logic::CommonLogic
 
         module_function
 
@@ -17,6 +17,12 @@ module Estate
           else
             instance.errors.add(attribute, message) unless instance.errors[attribute].include?(message)
           end
+        end
+
+        def get_states(instance)
+          from_state = instance.public_send("#{Estate::Configuration.column_name}_was")
+          to_state = instance.public_send(Estate::Configuration.column_name)
+          [from_state, to_state]
         end
       end
     end

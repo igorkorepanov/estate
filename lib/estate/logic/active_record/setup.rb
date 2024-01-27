@@ -6,12 +6,10 @@ module Estate
       module Setup
         module_function
 
-        def setup(base)
+        def call(base)
           base.class_eval do
             public_send(:before_validation) do
-              from_state = public_send("#{Estate::Configuration.column_name}_was")
-              to_state = public_send(Estate::Configuration.column_name)
-              Estate::Logic::ActiveRecord::SpecificLogic.validate_state_changes(self, from_state, to_state)
+              Estate::Logic::Core.call('active_record', self) # TODO: константа
             end
           end
         end

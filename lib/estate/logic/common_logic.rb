@@ -2,7 +2,7 @@
 
 module Estate
   module Logic
-    module Base
+    module CommonLogic
       def validate_state_changes(instance, from_state, to_state)
         if from_state == to_state
           if from_state.nil? && !Estate::Configuration.allow_empty_initial_state

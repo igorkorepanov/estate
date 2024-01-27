@@ -6,14 +6,12 @@ module Estate
       module Setup
         module_function
 
-        def setup(base)
+        def call(base)
           base.class_eval do
             def validate
               super
 
-              to_state = values[Estate::Configuration.column_name]
-              from_state, = column_change(Estate::Configuration.column_name)
-              Estate::Logic::Sequel::SpecificLogic.validate_state_changes(self, from_state, to_state)
+              Estate::Logic::Core.call('sequel', self) # TODO: константа
             end
           end
         end

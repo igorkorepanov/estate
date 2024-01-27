@@ -4,15 +4,14 @@ module Estate
   module Setup
     module_function
 
-    def setup(base)
+    def call(base)
+      asdsad TODO
       if 'ActiveRecord::Base'.in? base.ancestors.map(&:to_s)
         require File.join(File.dirname(__FILE__), 'logic', 'active_record', 'setup')
-        require File.join(File.dirname(__FILE__), 'logic', 'active_record', 'specific_logic')
-        Estate::Logic::ActiveRecord::Setup.setup(base)
+        Estate::Logic::ActiveRecord::Setup.call(base)
       else
         require File.join(File.dirname(__FILE__), 'logic', 'sequel', 'setup')
-        require File.join(File.dirname(__FILE__), 'logic', 'sequel', 'specific_logic')
-        Estate::Logic::Sequel::Setup.setup(base)
+        Estate::Logic::Sequel::Setup.call(base)
       end
     end
   end
