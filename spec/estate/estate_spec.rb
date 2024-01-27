@@ -10,7 +10,7 @@ RSpec.describe Estate do
   before do
     allow(Estate::Requirements).to receive(:check_requirements)
     allow(Estate::StateMachine).to receive(:create_store)
-    allow(Estate::Core).to receive(:setup)
+    allow(Estate::Setup).to receive(:setup)
   end
 
   describe 'self.included' do
@@ -25,7 +25,7 @@ RSpec.describe Estate do
     end
 
     it 'sets up callbacks using Estate::ActiveRecord' do
-      expect(Estate::Core).to have_received(:setup).with(class_with_estate)
+      expect(Estate::Setup).to have_received(:setup).with(class_with_estate)
     end
 
     it 'creates a store using Estate::StateMachine' do

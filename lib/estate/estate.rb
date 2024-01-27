@@ -6,7 +6,7 @@ module Estate
 
     Estate::Requirements.check_requirements(base)
     Estate::StateMachine.create_store
-    Estate::Core.setup(base)
+    Estate::Setup.setup(base)
   end
 
   module ClassMethods

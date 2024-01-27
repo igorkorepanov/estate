@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Estate
-  module NewCore
+  module Logic
     module Base
       def validate_state_changes(instance, from_state, to_state)
         if from_state == to_state
