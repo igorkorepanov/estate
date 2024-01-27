@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Estate works with ActiveRecords' do
+RSpec.describe 'Estate works with ActiveRecord' do
   let(:model_class) do
     stub_const('DummyModel', Class.new(ActiveRecord::Base) do
       include Estate
