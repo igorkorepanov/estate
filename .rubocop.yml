@@ -11,10 +11,6 @@ Layout/MultilineMethodCallIndentation:
   Exclude:
     - 'spec/**/*'
 
-Lint/ConstantDefinitionInBlock:
-  Exclude:
-    - 'spec/**/*'
-
 Metrics/AbcSize:
   Max: 20
 
@@ -27,10 +23,6 @@ Metrics/MethodLength:
 
 RSpec/ExampleLength:
   Enabled: false
-
-RSpec/LeakyConstantDeclaration:
-  Exclude:
-    - 'spec/**/*'
 
 RSpec/MultipleExpectations:
   Max: 10
