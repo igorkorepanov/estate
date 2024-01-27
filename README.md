@@ -1,3 +1,5 @@
+![CI](https://github.com/igorkorepanov/estate/actions/workflows/main.yml/badge.svg)
+
 # Estate Gem
 
 Estate is a Ruby gem designed to simplify state management in both ActiveRecord and Sequel models. The primary focus of this gem is to provide a straightforward way to define states and transitions using a clean syntax.
