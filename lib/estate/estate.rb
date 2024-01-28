@@ -19,7 +19,9 @@ module Estate
       yield if block_given?
     end
 
-    def state(name)
+    def state(name = nil)
+      raise(StandardError, 'state must be a Symbol or a String') unless Estate::StateMachine.argument_valid?(name)
+
       if Estate::StateMachine.state_exists?(name)
         raise(StandardError, "state `:#{name}` is already defined")
       else
@@ -27,7 +29,13 @@ module Estate
       end
     end
 
-    def transition(from:, to:)
+    def transition(from: nil, to: nil)
+      unless Estate::StateMachine.argument_valid?(from)
+        raise(StandardError, 'argument `from` must be a Symbol or a String')
+      end
+
+      raise(StandardError, 'argument `to` must be a Symbol or a String') unless Estate::StateMachine.argument_valid?(to)
+
       raise(StandardError, "state `#{from}` is not defined") unless Estate::StateMachine.state_exists?(from)
 
       raise(StandardError, "state `#{to}` is not defined") unless Estate::StateMachine.state_exists?(to)

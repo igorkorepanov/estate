@@ -9,18 +9,11 @@ module Estate
       end
 
       def state_exists?(state)
-        !state.nil? && states.key?(state.to_sym)
+        states.key?(state.to_sym)
       end
 
       def register_state(state)
-        case state
-        when Symbol
-          states[state] = nil
-        when String
-          states[state.to_sym] = nil
-        else
-          raise(ArgumentError, 'State must be a Symbol or a String')
-        end
+        states[state.to_sym] = nil
       end
 
       def transition_exists?(from:, to:)
@@ -29,9 +22,12 @@ module Estate
       end
 
       def register_transition(from:, to:)
-        # TODO: validate from and to
         transition_key = { from: from.to_sym, to: to.to_sym }
         transitions[transition_key] = nil
+      end
+
+      def argument_valid?(argument)
+        argument.is_a?(Symbol) || argument.is_a?(String)
       end
 
       attr_reader :states, :transitions
