@@ -8,7 +8,7 @@ RSpec.describe Estate do
   end
 
   before do
-    allow(Estate::Requirements).to receive(:check_requirements_todo_move)
+    allow(Estate::Requirements).to receive(:check_requirements)
     allow(Estate::StateMachine).to receive(:create_store)
     allow(Estate::Setup).to receive(:call)
   end

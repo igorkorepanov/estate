@@ -9,7 +9,7 @@ module Estate
         def call(base)
           base.class_eval do
             public_send(:before_validation) do
-              Estate::Logic::Core.call('active_record', self) # TODO: константа
+              Estate::Logic::Core.call(Estate::Constants::Orm::ACTIVE_RECORD, self) # TODO: константа
             end
           end
         end

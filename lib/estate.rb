@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'estate/configuration'
+require 'estate/constants/orm'
 require 'estate/estate'
 require 'estate/logic/core'
 require 'estate/requirements'

@@ -11,7 +11,7 @@ module Estate
             def validate
               super
 
-              Estate::Logic::Core.call('sequel', self) # TODO: константа
+              Estate::Logic::Core.call(Estate::Constants::Orm::SEQUEL, self)
             end
           end
         end
