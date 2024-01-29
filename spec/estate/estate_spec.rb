@@ -39,9 +39,9 @@ RSpec.describe Estate do
 
       it 'configures estate with default values' do
         expect { |b| class_with_estate.estate(&b) }.to yield_control
-        expect(Estate::Configuration).to have_received(:init_config).with(column_name: Estate::Configuration::Defaults::COLUMN_NAME,
-                                                                          allow_empty_initial_state: Estate::Configuration::Defaults::ALLOW_EMPTY_INITIAL_STATE,
-                                                                          raise_on_error: Estate::Configuration::Defaults::RAISE_ON_ERROR)
+        expect(Estate::Configuration).to have_received(:init_config).with(Estate::Configuration::Defaults::COLUMN_NAME,
+                                                                          Estate::Configuration::Defaults::ALLOW_EMPTY_INITIAL_STATE,
+                                                                          Estate::Configuration::Defaults::RAISE_ON_ERROR)
       end
 
       it 'configures estate with custom values' do
@@ -52,9 +52,7 @@ RSpec.describe Estate do
           class_with_estate.estate(column: custom_column_name, empty_initial_state: empty_allow_initial_state,
                                    raise_on_error: raise_on_error, &b)
         end.to yield_control
-        expect(Estate::Configuration).to have_received(:init_config).with(column_name: custom_column_name,
-                                                                          allow_empty_initial_state: empty_allow_initial_state,
-                                                                          raise_on_error: raise_on_error)
+        expect(Estate::Configuration).to have_received(:init_config).with(custom_column_name, empty_allow_initial_state, raise_on_error)
       end
 
       it 'does not rise an error without a block' do
@@ -122,7 +120,7 @@ RSpec.describe Estate do
           let(:transition_exists) { true }
 
           before do
-            allow(Estate::StateMachine).to receive(:transition_exists?).with(from: from_state, to: to_state).and_return(transition_exists)
+            allow(Estate::StateMachine).to receive(:transition_exists?).with(from_state, to_state).and_return(transition_exists)
           end
 
           context 'with existing transition' do
@@ -137,7 +135,7 @@ RSpec.describe Estate do
             it 'can register transition' do
               allow(Estate::StateMachine).to receive(:register_transition)
               class_with_estate.transition(from: from_state, to: to_state)
-              expect(Estate::StateMachine).to have_received(:register_transition).with(from: from_state, to: to_state)
+              expect(Estate::StateMachine).to have_received(:register_transition).with(from_state, to_state)
             end
           end
         end

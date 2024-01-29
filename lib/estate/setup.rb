@@ -5,7 +5,7 @@ module Estate
     module_function
 
     def call(base)
-      if 'ActiveRecord::Base'.in? base.ancestors.map(&:to_s)
+      if base.ancestors.map(&:to_s).include? 'ActiveRecord::Base'
         require File.join(File.dirname(__FILE__), 'logic', 'active_record', 'setup')
         Estate::Logic::ActiveRecord::Setup.call(base)
       else

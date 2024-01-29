@@ -20,10 +20,7 @@ RSpec.describe Estate::Configuration do
     let(:allow_empty_initial_state) { true }
     let(:raise_on_error) { true }
 
-    before do
-      described_class.init_config(column_name: column_name, allow_empty_initial_state: allow_empty_initial_state,
-                                  raise_on_error: raise_on_error)
-    end
+    before { described_class.init_config(column_name, allow_empty_initial_state, raise_on_error) }
 
     it 'can set and retrieve the custom COLUMN_NAME' do
       expect(described_class.column_name).to eq column_name
