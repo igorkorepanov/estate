@@ -10,7 +10,8 @@ module Estate
 
         module_function
 
-        def add_error(instance:, message:, attribute: :base)
+        # TODO: remove :base
+        def add_error(instance, message, attribute: :base)
           instance.errors.add(attribute, message)
         end
 

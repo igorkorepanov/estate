@@ -3,7 +3,7 @@
 module Estate
   module Configuration
     class << self
-      def init_config(column_name:, allow_empty_initial_state:, raise_on_error:)
+      def init_config(column_name, allow_empty_initial_state, raise_on_error)
         @column_name = column_name
         @allow_empty_initial_state = allow_empty_initial_state
         @raise_on_error = raise_on_error

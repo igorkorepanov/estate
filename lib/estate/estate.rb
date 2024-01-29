@@ -13,8 +13,7 @@ module Estate
     def estate(column: Estate::Configuration::Defaults::COLUMN_NAME,
                empty_initial_state: Estate::Configuration::Defaults::ALLOW_EMPTY_INITIAL_STATE,
                raise_on_error: Estate::Configuration::Defaults::RAISE_ON_ERROR)
-      Estate::Configuration.init_config(column_name: column, allow_empty_initial_state: empty_initial_state,
-                                        raise_on_error: raise_on_error)
+      Estate::Configuration.init_config(column, empty_initial_state, raise_on_error)
 
       yield if block_given?
     end
@@ -40,11 +39,11 @@ module Estate
 
       raise(StandardError, "state `#{to}` is not defined") unless Estate::StateMachine.state_exists?(to)
 
-      if Estate::StateMachine.transition_exists?(from: from, to: to)
+      if Estate::StateMachine.transition_exists?(from, to)
         raise(StandardError, "`transition from: :#{from}, to: :#{to}` already defined")
       end
 
-      Estate::StateMachine.register_transition(from: from, to: to)
+      Estate::StateMachine.register_transition(from, to)
     end
   end
 end

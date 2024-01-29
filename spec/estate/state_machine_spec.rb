@@ -50,13 +50,13 @@ RSpec.describe Estate::StateMachine do
 
     # TODO: tests for .transition_exists? and .register_transition are identical
     it 'returns true when the transition exists' do
-      expect(described_class.transition_exists?(**new_transition)).to eq false
-      expect { described_class.register_transition(**new_transition) }.not_to raise_error
-      expect(described_class.transition_exists?(**new_transition)).to eq true
+      expect(described_class.transition_exists?(new_transition[:from], new_transition[:to])).to eq false
+      expect { described_class.register_transition(new_transition[:from], new_transition[:to]) }.not_to raise_error
+      expect(described_class.transition_exists?(new_transition[:from], new_transition[:to])).to eq true
     end
 
     it 'returns false when the transition does not exist' do
-      expect(described_class.transition_exists?(from: :start, to: :nonexistent_state)).to eq false
+      expect(described_class.transition_exists?(:start, :nonexistent_state)).to eq false
     end
   end
 
@@ -67,9 +67,9 @@ RSpec.describe Estate::StateMachine do
 
     # TODO: tests for .transition_exists? and .register_transition are identical
     it 'registers the transition' do
-      expect(described_class.transition_exists?(**new_transition)).to eq false
-      expect { described_class.register_transition(**new_transition) }.not_to raise_error
-      expect(described_class.transition_exists?(**new_transition)).to eq true
+      expect(described_class.transition_exists?(new_transition[:from], new_transition[:to])).to eq false
+      expect { described_class.register_transition(new_transition[:from], new_transition[:to]) }.not_to raise_error
+      expect(described_class.transition_exists?(new_transition[:from], new_transition[:to])).to eq true
     end
   end
 

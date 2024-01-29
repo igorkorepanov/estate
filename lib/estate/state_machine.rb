@@ -16,13 +16,13 @@ module Estate
         states[state.to_sym] = nil
       end
 
-      def transition_exists?(from:, to:)
-        transition_key = { from: from.to_sym, to: to.to_sym }
+      def transition_exists?(from_state, to_state)
+        transition_key = { from: from_state.to_sym, to: to_state.to_sym }
         transitions.key?(transition_key)
       end
 
-      def register_transition(from:, to:)
-        transition_key = { from: from.to_sym, to: to.to_sym }
+      def register_transition(from_state, to_state)
+        transition_key = { from: from_state.to_sym, to: to_state.to_sym }
         transitions[transition_key] = nil
       end
 
