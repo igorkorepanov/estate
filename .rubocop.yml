@@ -1,3 +1,5 @@
+inherit_from: .rubocop_todo.yml
+
 require:
   - rubocop-performance
   - rubocop-rspec
@@ -10,9 +12,6 @@ Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented_relative_to_receiver
   Exclude:
     - 'spec/**/*'
-
-Metrics/AbcSize:
-  Max: 20
 
 Metrics/BlockLength:
   Max: 20

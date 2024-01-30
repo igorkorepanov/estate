@@ -8,16 +8,14 @@ RSpec.describe Estate::Logic::CommonLogic do
 
   describe '.validate_state_changes' do
     let(:instance) { double }
-    let(:configuration) { stub_const('Estate::Configuration', Module.new) }
     let(:column_name) { :some_column_name }
 
-    before do
-      allow(base_module).to receive(:add_error)
-      allow(configuration).to receive(:column_name).and_return(column_name)
-    end
+    before { allow(base_module).to receive(:add_error) }
 
     context 'with nil from_state and to_state' do
-      before { allow(configuration).to receive(:allow_empty_initial_state).and_return(allow_empty_initial_state) }
+      before do
+        allow(base_module).to receive(:config_for).and_return({ empty_initial_state: allow_empty_initial_state, column_name: column_name })
+      end
 
       context 'with allowed empty initial state' do
         let(:allow_empty_initial_state) { true }
@@ -60,10 +58,11 @@ RSpec.describe Estate::Logic::CommonLogic do
       let(:to_state) { :forbidden_to_state }
 
       it 'adds an error' do
+        allow(base_module).to receive(:config_for).and_return({ column_name: column_name })
         allow(state_machine).to receive(:state_exists?).and_return(true)
-        allow(base_module).to receive(:transition_allowed?).with(from_state, to_state).and_return(false)
+        allow(base_module).to receive(:transition_allowed?).with(instance.class.name, from_state, to_state).and_return(false)
         base_module.validate_state_changes(instance, from_state, to_state)
-        expect(base_module).to have_received(:add_error).with(instance, "transition from `#{from_state}` to `#{to_state}` is not allowed", attribute: Estate::Configuration.column_name)
+        expect(base_module).to have_received(:add_error).with(instance, "transition from `#{from_state}` to `#{to_state}` is not allowed", attribute: column_name)
       end
     end
 
@@ -73,7 +72,7 @@ RSpec.describe Estate::Logic::CommonLogic do
 
       it 'does not add an error' do
         allow(state_machine).to receive(:state_exists?).and_return(true)
-        allow(base_module).to receive(:transition_allowed?).with(from_state, to_state).and_return(true)
+        allow(base_module).to receive(:transition_allowed?).with(instance.class.name, from_state, to_state).and_return(true)
         base_module.validate_state_changes(instance, from_state, to_state)
         expect(base_module).not_to have_received(:add_error)
       end
@@ -81,22 +80,24 @@ RSpec.describe Estate::Logic::CommonLogic do
   end
 
   describe '.transition_allowed?' do
+    let(:instance) { double }
+
     # the model has just been initialized, all transitions are allowed
     context 'with empty initial state' do
-      it { expect(base_module.transition_allowed?(nil, :some_state)).to eq true }
+      it { expect(base_module.transition_allowed?(instance, nil, :some_state)).to eq true }
     end
 
     context 'with existing initial state' do
       it 'returns true' do
         allow(Estate::StateMachine).to receive(:transition_exists?).and_return(true)
-        expect(base_module.transition_allowed?(:some_initial_state, :some_state)).to eq true
-        expect(Estate::StateMachine).to have_received(:transition_exists?).with(:some_initial_state, :some_state)
+        expect(base_module.transition_allowed?(instance, :some_initial_state, :some_state)).to eq true
+        expect(Estate::StateMachine).to have_received(:transition_exists?).with(instance, :some_initial_state, :some_state)
       end
 
       it 'returns false' do
         allow(Estate::StateMachine).to receive(:transition_exists?).and_return(false)
-        expect(base_module.transition_allowed?(:some_initial_state, :some_state)).to eq false
-        expect(Estate::StateMachine).to have_received(:transition_exists?).with(:some_initial_state, :some_state)
+        expect(base_module.transition_allowed?(instance, :some_initial_state, :some_state)).to eq false
+        expect(Estate::StateMachine).to have_received(:transition_exists?).with(instance, :some_initial_state, :some_state)
       end
     end
   end

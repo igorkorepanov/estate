@@ -11,7 +11,7 @@ module Estate
         module_function
 
         def add_error(instance, message, attribute: :base)
-          if Estate::Configuration.raise_on_error
+          if config_for(instance)[:raise_on_error]
             exception_message = attribute == :base ? message : "#{attribute}: #{message}"
             raise(StandardError, exception_message)
           else
@@ -20,8 +20,8 @@ module Estate
         end
 
         def get_states(instance)
-          from_state = instance.public_send("#{Estate::Configuration.column_name}_was")
-          to_state = instance.public_send(Estate::Configuration.column_name)
+          from_state = instance.public_send("#{config_for(instance)[:column_name]}_was")
+          to_state = instance.public_send(config_for(instance)[:column_name])
           [from_state, to_state]
         end
       end

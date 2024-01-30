@@ -16,8 +16,8 @@ module Estate
         end
 
         def get_states(instance)
-          from_state, = instance.column_change(Estate::Configuration.column_name)
-          to_state = instance.values[Estate::Configuration.column_name]
+          from_state, = instance.column_change(config_for(instance)[:column_name])
+          to_state = instance.values[config_for(instance)[:column_name]]
           [from_state, to_state]
         end
       end
