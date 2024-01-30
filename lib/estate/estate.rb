@@ -17,14 +17,13 @@ module Estate
       yield if block_given?
     end
 
-    def state(name = nil)
-      raise(StandardError, 'state must be a Symbol or a String') unless Estate::StateMachine.argument_valid?(name)
+    def state(state_name = nil)
+      raise(StandardError, 'state must be a Symbol or a String') unless Estate::StateMachine.argument_valid?(state_name)
 
-      state_machine_name = self.name
-      if Estate::StateMachine.state_exists?(state_machine_name, name)
-        raise(StandardError, "state `:#{name}` is already defined")
+      if Estate::StateMachine.state_exists?(name, state_name)
+        raise(StandardError, "state `:#{state_name}` is already defined")
       else
-        Estate::StateMachine.register_state(state_machine_name, name)
+        Estate::StateMachine.register_state(name, state_name)
       end
     end
 
@@ -35,21 +34,15 @@ module Estate
 
       raise(StandardError, 'argument `to` must be a Symbol or a String') unless Estate::StateMachine.argument_valid?(to)
 
-      state_machine_name = name
+      raise(StandardError, "state `#{from}` is not defined") unless Estate::StateMachine.state_exists?(name, from)
 
-      raise(StandardError, "state `#{from}` is not defined") unless Estate::StateMachine.state_exists?(
-        state_machine_name, from
-      )
+      raise(StandardError, "state `#{to}` is not defined") unless Estate::StateMachine.state_exists?(name, to)
 
-      raise(StandardError, "state `#{to}` is not defined") unless Estate::StateMachine.state_exists?(
-        state_machine_name, to
-      )
-
-      if Estate::StateMachine.transition_exists?(state_machine_name, from, to)
+      if Estate::StateMachine.transition_exists?(name, from, to)
         raise(StandardError, "`transition from: :#{from}, to: :#{to}` already defined")
       end
 
-      Estate::StateMachine.register_transition(state_machine_name, from, to)
+      Estate::StateMachine.register_transition(name, from, to)
     end
   end
 end
