@@ -7,10 +7,11 @@ module Estate
 
       def call(orm, instance)
         require 'estate/logic/common_logic'
-        require File.join(File.dirname(__FILE__), orm, 'specific_logic')
+        require "estate/logic/#{orm}/specific_logic"
 
         extend Estate::Logic::CommonLogic
-        extend "Estate::Logic::#{orm.classify}::SpecificLogic".safe_constantize
+        orm_class_name = orm.split('_').map(&:capitalize).join
+        extend const_get("Estate::Logic::#{orm_class_name}::SpecificLogic")
 
         validate_state_changes(instance, *get_states(instance))
       end
