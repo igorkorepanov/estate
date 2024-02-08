@@ -1,13 +1,9 @@
 # frozen_string_literal: true
 
-require 'estate/logic/common_logic'
-
 module Estate
   module Logic
     module ActiveRecord
       module SpecificLogic
-        extend Estate::Logic::CommonLogic
-
         module_function
 
         def add_error(instance, message, attribute: :base)

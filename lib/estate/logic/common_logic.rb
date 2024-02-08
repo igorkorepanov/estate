@@ -24,8 +24,8 @@ module Estate
         from_state.nil? || Estate::StateMachine.transition_exists?(state_machine_name, from_state, to_state)
       end
 
-      def config_for(instance)
-        state_machine_name = instance.class.name
+      def config_for(klass)
+        state_machine_name = klass.is_a?(Class) ? klass.name : klass.class.name
         Estate::StateMachine.state_machines[state_machine_name][:config]
       end
     end

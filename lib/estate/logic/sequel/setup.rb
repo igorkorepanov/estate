@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require 'estate/logic/common_logic'
+require 'estate/logic/sequel/specific_logic'
+
 module Estate
   module Logic
     module Sequel
@@ -11,7 +14,9 @@ module Estate
             def validate
               super
 
-              Estate::Logic::Core.call(Estate::Constants::Orm::SEQUEL, self)
+              extend Estate::Logic::CommonLogic
+              extend Estate::Logic::Sequel::SpecificLogic
+              validate_state_changes(self, *get_states(self))
             end
           end
         end
