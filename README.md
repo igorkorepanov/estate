@@ -2,7 +2,7 @@
 
 # Estate Gem
 
-Estate is a Ruby gem designed to simplify state management in both ActiveRecord and Sequel models. The primary focus of this gem is to provide a straightforward way to define states and transitions using a clean syntax.
+Estate is a Ruby gem designed to simplify state management in models, including ActiveRecord, Sequel, as well as plain Ruby objects. The primary focus of this gem is to provide a straightforward way to define states and transitions using a clean syntax.
 
 ## Installation
 

@@ -4,11 +4,10 @@ require 'rails_helper'
 
 RSpec.describe 'Estate works with Sequel' do
   let(:model_class) do
-    class DModel < Sequel::Model
+    class SequelDummyModel < Sequel::Model
       include Estate
 
       plugin :dirty
-      # set_dataset(:dummy_models)
 
       estate do
         state :state1
@@ -18,7 +17,7 @@ RSpec.describe 'Estate works with Sequel' do
         transition from: :state1, to: :state2
       end
     end
-    DModel
+    SequelDummyModel
   end
 
   it 'creates a model' do
@@ -63,16 +62,15 @@ RSpec.describe 'Estate works with Sequel' do
 
   context 'with allowed empty initial state' do
     let(:model_class) do
-      class DModel < Sequel::Model
+      class SequelDummyModel < Sequel::Model
         include Estate
 
         plugin :dirty
-        # set_dataset(:dummy_models)
 
         estate empty_initial_state: true do
         end
       end
-      DModel
+      SequelDummyModel
     end
 
     it 'creates a model' do

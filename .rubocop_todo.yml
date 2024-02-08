@@ -14,11 +14,12 @@ Lint/ConstantDefinitionInBlock:
     - 'spec/features/active_records_spec.rb'
     - 'spec/features/multiple_state_machines.rb'
     - 'spec/features/sequel_spec.rb'
+    - 'spec/features/plain_ruby_object_spec.rb'
 
 # Offense count: 1
 # Configuration parameters: AllowedMethods, AllowedPatterns, CountRepeatedAttributes.
 Metrics/AbcSize:
-  Max: 21
+  Max: 22
 
 # Offense count: 1
 # Configuration parameters: Include, CustomTransform, IgnoreMethods, SpecSuffixOnly.
@@ -33,3 +34,4 @@ RSpec/LeakyConstantDeclaration:
     - 'spec/features/active_records_spec.rb'
     - 'spec/features/multiple_state_machines.rb'
     - 'spec/features/sequel_spec.rb'
+    - 'spec/features/plain_ruby_object_spec.rb'

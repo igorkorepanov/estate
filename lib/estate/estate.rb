@@ -3,9 +3,6 @@
 module Estate
   def self.included(base)
     base.extend Estate::ClassMethods
-
-    Estate::Requirements.check_requirements(base)
-    Estate::Setup.call(base)
   end
 
   module ClassMethods
@@ -13,6 +10,7 @@ module Estate
                empty_initial_state: Estate::Configuration::Defaults::ALLOW_EMPTY_INITIAL_STATE,
                raise_on_error: Estate::Configuration::Defaults::RAISE_ON_ERROR)
       Estate::StateMachine.init(name, column, empty_initial_state, raise_on_error)
+      Estate::Setup.call(self)
 
       yield if block_given?
     end

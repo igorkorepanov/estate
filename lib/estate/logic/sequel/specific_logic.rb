@@ -1,13 +1,9 @@
 # frozen_string_literal: true
 
-require 'estate/logic/common_logic'
-
 module Estate
   module Logic
     module Sequel
       module SpecificLogic
-        extend Estate::Logic::CommonLogic
-
         module_function
 
         # TODO: remove :base

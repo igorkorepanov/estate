@@ -7,24 +7,9 @@ RSpec.describe Estate do
     end
   end
 
-  before do
-    allow(Estate::Requirements).to receive(:check_requirements)
-    allow(Estate::Setup).to receive(:call)
-  end
-
   describe 'self.included' do
-    before { class_with_estate }
-
     it 'extends the base class with ClassMethods' do
       expect(class_with_estate.singleton_class.included_modules).to include(Estate::ClassMethods)
-    end
-
-    it 'checks requirements using Estate::Requirements' do
-      expect(Estate::Requirements).to have_received(:check_requirements).with(class_with_estate)
-    end
-
-    it 'sets up callbacks using Estate::ActiveRecord' do
-      expect(Estate::Setup).to have_received(:call).with(class_with_estate)
     end
   end
 
@@ -34,6 +19,12 @@ RSpec.describe Estate do
 
       it 'configures estate with default values' do
         expect { |b| class_with_estate.estate(&b) }.to yield_control
+      end
+
+      it 'sets up callbacks using Estate::ActiveRecord' do
+        allow(Estate::Setup).to receive(:call)
+        class_with_estate.estate
+        expect(Estate::Setup).to have_received(:call).with(class_with_estate)
       end
 
       it 'configures estate with custom values' do

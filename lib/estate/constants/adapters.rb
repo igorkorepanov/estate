@@ -2,9 +2,10 @@
 
 module Estate
   module Constants
-    module Orm
+    module Adapters
       ACTIVE_RECORD = 'active_record'
       SEQUEL = 'sequel'
+      PLAIN_RUBY_OBJECT = 'plain_ruby_object'
     end
   end
 end
