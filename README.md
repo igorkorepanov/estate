@@ -1,3 +1,4 @@
+[![Gem Version](https://badge.fury.io/rb/estate.svg)](https://badge.fury.io/rb/estate)
 ![CI](https://github.com/igorkorepanov/estate/actions/workflows/main.yml/badge.svg)
 
 # Estate Gem
